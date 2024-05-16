@@ -1,0 +1,56 @@
+// TO make the next-top loading bar work with router.push
+NProgress.start()                                         ;
+router.push(`/search/recipe/${searchTerm}`)               ;
+
+In database =>
+Users collections
+{
+_id: ObjectId,
+email: String (unique),
+hashedPassword: String
+}
+
+Passwords collections
+{
+_id: ObjectId,
+userId: ObjectId (references user document in Users collection),
+website: String,
+notes: String (optional),
+encryptedPassword: String
+}
+
+. SO what i have right now is the login information of the user, which includes its name,email and the userHashedPassword.
+If I were to make an password collection how should i refernce both collections without the obvious ones like first fetching the user's id from the database from the email of the person and the listing all of the passwords. I am flexible with both of the collections.SO help me to find the right solution
+
+
+How to implement ->
+After login =>
+ 1. Get the user's object Id from the email. 
+ 2. And then find all the passwords with the userId attached to it.
+ 3. Then send them to the client with hashing.
+ 4. Ask for normal password from the backend by giving the hashed one.
+
+
+ {
+  "_id": ""
+  "userId": "6643756a667860539c0860c1",
+  "url": "demo.com",
+  "email": "reyanyashgurjar@outlook.com",
+  "password": ""
+}
+
+Ok, the first thing that will happen is that i will fetch the passwords from the backend.
+Then, populate the PasswordSection. 
+
+Then if someone adds a new password. I will first add it to the datbase and then add to the PasswordArray.
+
+I will only use the PasswordForm for the adding of the new passwords.
+
+For Edit - I will make a modal open and then send patch request with passwordId and userId.
+
+For Delete - I will delete it with the _id from the PasswordArray.
+
+Is PasswordSection going to be a server or client componenet? 
+I will just make the whole Page to be a use client
+
+
